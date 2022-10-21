@@ -10,8 +10,11 @@ class UsersRepository {
     return createUser;
   };
   deleteUser = async (userId, ID, password) => {
-    const deleteUser = await destroy({ where: { userId, ID, password } });
-    return deleteUSer;
+    const deleteUser = await User.destroy({ where: { userId, ID, password } });
+    return deleteUser;
+  };
+  updateRefresh = async (refreshToken, user) => {
+    await User.update({ refreshToken }, { where: { userId: user.userId } });
   };
 }
 
