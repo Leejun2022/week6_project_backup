@@ -46,4 +46,30 @@ class UsersController {
       next(error);
     }
   };
+  //*회원정보 수정
+  updatUser = async (req, res, next) => {
+    try {
+      //body로 받는 값 넣어줄건데 뭐로 하지 ?
+      const { userId, ID } = res.locals.user;
+      const { nickname } = req.body;
+      const user = await this.usersService.updatUser(userId, nickname);
+      res.status(200).json({ msg: "수정에 성공했습니다." });
+      // const existUser = await this.usersService.checkUser(userId)
+    } catch (error) {
+      next(error);
+    }
+  };
+  deletUser = async (req, res, next) => {
+    try {
+      const { userId } = res.locals.user;
+      await this.usersService.checkUser(userId);
+      res.status(200).json({
+        msg: "탈퇴에 성공하였습니다.",
+      });
+    } catch (error) {
+      next(error);
+    }
+  };
 }
+
+module.exports = UsersController;
