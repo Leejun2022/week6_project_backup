@@ -1,0 +1,48 @@
+const CommentService = require("../services/comments.service");
+
+class CommentsController {
+  commentService = new CommentService();
+
+  // 댓글 조회 API
+  getComment = async (req, res) => {
+    const { postId } = req.params;
+    const comments = await this.commentService.findAllComment(postId);
+
+    res.status(200).json({ data: comments });
+  };
+
+  // 댓글 생성 API
+  createComment = async (req, res) => {
+    const { postId } = req.params;
+    const { comment } = req.body;
+    const { username } = res.locals.user;
+    const createCommentData = await this.commentService.createComment(
+      postId,
+      comment,
+      username
+    );
+    res.status(200).json({ message: "댓글을 생성했습니다." });
+  };
+
+  // 댓글 수정 API
+  updateComment = async (req, res) => {
+    const { commentId } = req.params;
+    const { comment } = req.body;
+
+    const updateComment = await this.commentService.updateComment(
+      commentId,
+      comment
+    );
+    res.status(200).json({ message: "댓글을 수정했습니다." });
+  };
+
+  deleteComment = async (req, res) => {
+    const { commentId } = req.params;
+    const { username } = res.locals.user;
+    const deleteComment = await this.commentService.deleteComment(
+      commentId,
+      username
+    );
+    res.status(200).json({ message: "댓글을 삭제했습니다." });
+  };
+}
