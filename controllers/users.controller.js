@@ -28,4 +28,22 @@ class UsersController {
       next(error);
     }
   };
+  userLogin = async (req, res, next) => {
+    try {
+      const { ID, password } = req.body;
+      const user = await this.usersService.loginUser(ID, password);
+
+      res.cookie("accessToken", user[1]);
+      res.cookie("refreshToken", user[2]);
+      res.status(200).json({
+        ID: user[0].ID,
+        userId: user[0].userId,
+        accessToken: user[1],
+        refreshToken: user[0].refreshToken,
+        msg: "로그인에 성공하였습니다.",
+      });
+    } catch (error) {
+      next(error);
+    }
+  };
 }
