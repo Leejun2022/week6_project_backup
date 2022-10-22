@@ -1,4 +1,3 @@
-const { Router } = require("express");
 const CommentService = require("../services/comments.service");
 
 class CommentController {
