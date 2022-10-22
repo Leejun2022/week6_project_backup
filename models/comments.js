@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       postId: { type: DataTypes.STRING, allowNull: false },
       comment: { type: DataTypes.STRING, unique: true, allowNull: false },
-      username: { type: DataTypes.STRING, unique: true, allowNull: false },
+      nickame: { type: DataTypes.STRING, unique: true, allowNull: false },
     },
     {
       sequelize,

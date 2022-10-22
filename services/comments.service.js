@@ -8,31 +8,31 @@ class CommentService {
     return allComment;
   };
 
-  createComment = async (postId, commentId, username) => {
+  createComment = async (postId, commentId, nickname) => {
     const createCommentData = await this.commentRepository.createComment(
       postId,
       commentId,
-      username
+      nickname
     );
     return {
       comment: createCommentData.comment,
-      username: createCommentData.username,
+      nickname: createCommentData.nickname,
       createdAt: createCommentData.createdAt,
     };
   };
 
-  updateComment = async (commentId, username) => {
+  updateComment = async (commentId, nickname) => {
     const updateCommentData = await this.commentRepository.updateComment(
       commentId,
-      username
+      nickname
     );
     return updateCommentData;
   };
 
-  deleteComment = async (commentId, username) => {
+  deleteComment = async (commentId, nickname) => {
     const deleteCommentData = await this.commentRepository.deleteComment(
       commentId,
-      username
+      nickname
     );
     return deleteCommentData;
   };

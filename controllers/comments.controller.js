@@ -16,11 +16,11 @@ class CommentController {
   createComment = async (req, res) => {
     const { postId } = req.params;
     const { comment } = req.body;
-    const { username } = res.locals.user;
+    const { nickname } = res.locals.user;
     const createCommentData = await this.commentContorller.createComment(
       postId,
       comment,
-      username
+      nickname
     );
     res.status(200).json({ data: createCommentData });
   };
@@ -40,10 +40,10 @@ class CommentController {
   //댓글 삭제 API
   deleteComment = async (req, res) => {
     const { commentId } = req.params;
-    const { username } = res.locals.user;
+    const { nickname } = res.locals.user;
     const deleteComment = await this.commentContorller.deleteComment(
       commentId,
-      username
+      nickname
     );
     res.status(200).json({ message: "댓글을 삭제했습니다." });
   };

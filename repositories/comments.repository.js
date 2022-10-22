@@ -15,27 +15,27 @@ class CommentRepository {
     return comments;
   };
 
-  createComment = async (postId, comment, username) => {
+  createComment = async (postId, comment, nickname) => {
     const createCommentData = await Comments.create({
       postId,
       comment,
-      username,
+      nickname,
     });
 
     return createCommentData;
   };
 
-  updateComment = async (commentId, comment, username) => {
+  updateComment = async (commentId, comment, nickname) => {
     const updateCommentData = await Comments.update(
       { comment: comment },
-      { where: { commentId, username } }
+      { where: { commentId, nickname } }
     );
     return updateCommentData;
   };
 
-  deleteComment = async (commentId, username) => {
+  deleteComment = async (commentId, nickname) => {
     const deleteCommentData = await Comments.destroy({
-      where: { commentId, username },
+      where: { commentId, nickname },
     });
     return deleteCommentData;
   };
