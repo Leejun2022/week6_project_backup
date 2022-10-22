@@ -10,8 +10,8 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       this.belongsTo(models.User, {
-        foreignKey: "userId",
-        targetKey: "userId",
+        foreignKey: "userKey",
+        targetKey: "userKey",
       });
       this.hasMany(models.Comment, {
         foreignKey: "postId",
@@ -27,11 +27,11 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
-      userId: {
+      userKey: {
         type: DataTypes.INTEGER,
         references: {
           model: "Users",
-          key: "userId",
+          key: "userKey",
         },
       },
       nickname: {

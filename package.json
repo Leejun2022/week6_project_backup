@@ -11,10 +11,11 @@
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.3.3",
     "prettier": "^2.7.1",
-    "sequelize": "^6.25.3",
+    "sequelize": "^6.25.3"
+  },
+  "devDependencies": {
     "sequelize-cli": "^6.5.1"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

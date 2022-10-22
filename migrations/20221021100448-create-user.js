@@ -3,13 +3,13 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable("Users", {
-      userId: {
+      userKey: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      ID: {
+      userId: {
         allowNull: false,
         unique: true,
         type: Sequelize.STRING,
@@ -20,18 +20,19 @@ module.exports = {
         type: Sequelize.STRING,
       },
       password: {
-        allowNull: false,
         type: Sequelize.STRING,
       },
+      refreshToken: {
+        type: Sequelize.STRING,
+        defaultValue: "",
+      },
       createdAt: {
-        allowNull: false,
-        type: Sequelize.DataTypes.DATE,
-        defaultValue: Sequelize.DataTypes.NOW,
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn("NOW"),
       },
       updatedAt: {
-        allowNull: false,
-        type: Sequelize.DataTypes.DATE,
-        defaultValue: Sequelize.DataTypes.NOW,
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn("NOW"),
       },
     });
   },

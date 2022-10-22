@@ -36,8 +36,8 @@ module.exports = async (req, res, next) => {
           throw new MiddlewareError("로그인 기한이 만료되었습니다.");
         }
 
-        const userId = existUser.userId;
-        const newAccessToken = jwt.sign({ userId }, process.env.SECRET_KEY, {
+        const userKey = existUser.userKey;
+        const newAccessToken = jwt.sign({ userKey }, process.env.SECRET_KEY, {
           expiresIn: "1d",
         });
         res.cookies("accessToken", newAccessToken);
@@ -49,18 +49,18 @@ module.exports = async (req, res, next) => {
         });
       }
       if (accessVerified && !refreshVerified) {
-        const { userId } = accessVerified;
-        const existUser = await User.findOne({ where: { userId } });
+        const { userKey } = accessVerified;
+        const existUser = await User.findOne({ where: { userKey } });
         if (!existUser) {
           throw new MiddlewareError("로그인 기한이 만료되었습니다.");
         }
-        const newRefreshToken = jwt.sign({ userId }, process.env.SECRET_KEY, {
+        const newRefreshToken = jwt.sign({ userKey }, process.env.SECRET_KEY, {
           expiresIn: "21d",
         });
 
         await User.update(
           { refreshToken: newRefreshToken },
-          { where: { userId } }
+          { where: { userKey } }
         );
         res.cookies("refreshToken", newRefreshToken);
         return res.status(201).json({
@@ -70,10 +70,10 @@ module.exports = async (req, res, next) => {
         });
       }
       if (accessVerified && refreshVerified) {
-        const { userId } = accessVerified;
+        const { userKey } = accessVerified;
         User.findOne({
-          where: { userId },
-          attributes: ["userId", "username"],
+          where: { userKey },
+          attributes: ["userKey", "nickname"],
         }).then((user) => {
           res.locals.user = user;
           next();

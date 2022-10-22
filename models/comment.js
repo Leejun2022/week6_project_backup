@@ -10,8 +10,8 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       this.belongsTo(models.User, {
-        foreignKey: "userId",
-        targetKey: "userId",
+        foreignKey: "userKey",
+        targetKey: "userKey",
       });
       this.belongsTo(models.Post, {
         foreignKey: "postId",
@@ -33,7 +33,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         required: true,
       },
-      userId: {
+      userKey: {
         type: DataTypes.INTEGER,
         required: true,
       },

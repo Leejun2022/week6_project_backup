@@ -10,28 +10,28 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       this.hasMany(models.Comment, {
-        foreignKey: "userId",
-        sourceKey: "userId",
+        foreignKey: "userKey",
+        sourceKey: "userKey",
       });
       this.hasMany(models.Post, {
-        foreignKey: "userId",
-        sourceKey: "userId",
+        foreignKey: "userKey",
+        sourceKey: "userKey",
       });
       this.hasMany(models.Like, {
-        foreignKey: "userId",
-        sourceKey: "userId",
+        foreignKey: "userKey",
+        sourceKey: "userKey",
       });
     }
   }
   User.init(
     {
-      userId: {
+      userKey: {
         allowNull: false,
         autoIncrement: true,
         type: DataTypes.INTEGER,
         primaryKey: true,
       },
-      ID: {
+      userId: {
         allowNull: false,
         unique: true,
         type: DataTypes.STRING,
@@ -53,16 +53,6 @@ module.exports = (sequelize, DataTypes) => {
       },
       refreshToken: {
         type: DataTypes.STRING,
-      },
-      createdAt: {
-        allowNull: false,
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW, // 아무런 값을 입력하지 않을 경우 현재 시간을 할당
-      },
-      updatedAt: {
-        allowNull: false,
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW,
       },
     },
     {
