@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         allowNull: false,
       },
-      postId: { type: DataTypes.STRING, allowNull: false },
+      postId: { type: DataTypes.INTEGER, allowNull: false },
       comment: { type: DataTypes.STRING, unique: true, allowNull: false },
       nickame: { type: DataTypes.STRING, unique: true, allowNull: false },
     },
