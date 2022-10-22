@@ -1,5 +1,4 @@
 const { Comments } = require("../models");
-const { route } = require("../routes/comments.routes");
 
 class CommentRepository {
   findAllComment = async (postId) => {

@@ -1,12 +1,13 @@
+const { Router } = require("express");
 const CommentService = require("../services/comments.service");
 
-class CommentsController {
-  commentService = new CommentService();
+class CommentController {
+  commentContorller = new CommentService();
 
   // 댓글 조회 API
   getComment = async (req, res) => {
     const { postId } = req.params;
-    const comments = await this.commentService.findAllComment(postId);
+    const comments = await this.commentContorller.findAllComment(postId);
 
     res.status(200).json({ data: comments });
   };
@@ -16,12 +17,12 @@ class CommentsController {
     const { postId } = req.params;
     const { comment } = req.body;
     const { username } = res.locals.user;
-    const createCommentData = await this.commentService.createComment(
+    const createCommentData = await this.commentContorller.createComment(
       postId,
       comment,
       username
     );
-    res.status(200).json({ message: "댓글을 생성했습니다." });
+    res.status(200).json({ data: createCommentData });
   };
 
   // 댓글 수정 API
@@ -29,20 +30,23 @@ class CommentsController {
     const { commentId } = req.params;
     const { comment } = req.body;
 
-    const updateComment = await this.commentService.updateComment(
+    const updateComment = await this.commentContorller.updateComment(
       commentId,
       comment
     );
     res.status(200).json({ message: "댓글을 수정했습니다." });
   };
 
+  //댓글 삭제 API
   deleteComment = async (req, res) => {
     const { commentId } = req.params;
     const { username } = res.locals.user;
-    const deleteComment = await this.commentService.deleteComment(
+    const deleteComment = await this.commentContorller.deleteComment(
       commentId,
       username
     );
     res.status(200).json({ message: "댓글을 삭제했습니다." });
   };
 }
+
+module.exports = CommentController;

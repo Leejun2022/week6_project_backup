@@ -1,7 +1,6 @@
-const CommentService = require("../../../../../코딩/HangHae_week05/services/comments.service");
 const CommentRepository = require("../repositories/comments.repository");
 
-class CommentRepository {
+class CommentService {
   commentRepository = new CommentRepository();
 
   findAllComment = async (postId) => {
@@ -21,6 +20,7 @@ class CommentRepository {
       createdAt: createCommentData.createdAt,
     };
   };
+
   updateComment = async (commentId, username) => {
     const updateCommentData = await this.commentRepository.updateComment(
       commentId,
