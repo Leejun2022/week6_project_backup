@@ -31,7 +31,7 @@ module.exports = () => {
             // 가입되지 않는 유저면 회원가입 시키고 로그인을 시킨다
             const newUser = await User.create({
               email: profile._json && profile._json.kakao_account_email,
-              nick: profile.displayName,
+              nickname,
               snsId: profile.id,
               provider: "kakao",
             });
