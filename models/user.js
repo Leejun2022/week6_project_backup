@@ -32,17 +32,20 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
       },
       userId: {
-        allowNull: false,
-        unique: true,
         type: DataTypes.STRING,
       },
       nickname: {
-        allowNull: false,
-        unique: true,
         type: DataTypes.STRING,
       },
       password: {
-        allowNull: false,
+        type: DataTypes.STRING,
+      },
+      email: DataTypes.STRING,
+
+      snsId: {
+        type: DataTypes.STRING,
+      },
+      provider: {
         type: DataTypes.STRING,
       },
       createdAt: {

@@ -10,16 +10,19 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       userId: {
-        allowNull: false,
-        unique: true,
         type: Sequelize.STRING,
       },
       nickname: {
-        allowNull: false,
-        unique: true,
         type: Sequelize.STRING,
       },
       password: {
+        type: Sequelize.STRING,
+      },
+      email: Sequelize.STRING,
+      snsId: {
+        type: Sequelize.STRING,
+      },
+      provider: {
         type: Sequelize.STRING,
       },
       refreshToken: {
