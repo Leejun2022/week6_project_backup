@@ -53,6 +53,8 @@ const kakaoCallback = (req, res, next) => {
         );
 
         result = { userKey, accessToken, refreshToken, nickname };
+        res.cookie("accessToken", accessToken);
+        res.cookie("refreshToken", refreshToken);
         res.status(201).json({
           user: result,
           msg: "카카오 로그인에 성공하였습니다.",
