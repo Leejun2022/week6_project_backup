@@ -39,12 +39,12 @@ const kakaoCallback = (req, res, next) => {
         const accessToken = jwt.sign(
           { userKey: user.userKey },
           process.env.SECRET_KEY,
-          { expiresIn: "3h" }
+          { expiresIn: "1d" }
         );
         const refreshToken = jwt.sign(
           { userKey: user.userKey },
           process.env.SECRET_KEY,
-          { expiresIn: "5h" }
+          { expiresIn: "21d" }
         );
 
         await User.update(
