@@ -14,5 +14,4 @@ module.exports = () => {
     done(null, user);
   });
   kakao();
-  google();
 };
