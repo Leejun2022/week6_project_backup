@@ -28,14 +28,14 @@ class PostService {
     const findPost = await this.postRepository.findPostById(postId);
     // console.log(findPost)
     const result = {
-      postId: findPost.null,
+      postId: findPost.postId,
       nickname: findPost.nickname,
+      userKey: findPost.userKey,
       title: findPost.title,
       content: findPost.content,
       createdAt: findPost.createdAt,
       updatedAt: findPost.updatedAt,
     };
-    console.log(result, "아무거나찍습니다")
     return result;
   };
 
@@ -60,11 +60,12 @@ class PostService {
     };
   };
 
-  updatePost = async (postId, password, title, content) => {
+  updatePost = async (postId, title, content) => {
     const findPost = await this.postRepository.findPostById(postId);
+    console.log(findPost)
     if (!findPost) throw new Error("Post doesn't exist");
 
-    await this.postRepository.updatePost(postId, password, title, content);
+    await this.postRepository.updatePost(postId, title, content);
 
     const updatePost = await this.postRepository.findPostById(postId);
 
@@ -78,11 +79,11 @@ class PostService {
     };
   };
 
-  deletePost = async (postId, password) => {
+  deletePost = async (postId) => {
     const findPost = await this.postRepository.findPostById(postId);
     if (!findPost) throw new Error("Post doesn't exist");
 
-    await this.postRepository.deletePost(postId, password);
+    await this.postRepository.deletePost(postId);
 
     return {
       postId: findPost.postId,
